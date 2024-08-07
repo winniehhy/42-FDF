@@ -10,7 +10,7 @@
 #                                                                              #
 # **************************************************************************** #
 
-CC = gcc
+CC = cc
 CFLAGS = -Wall -Wextra -Werror -std=c99
 SRC_DIR = srcs
 OBJ_DIR = objs
@@ -35,7 +35,11 @@ SRCS = $(wildcard $(SRC_DIR)/*.c)
 OBJS = $(patsubst $(SRC_DIR)/%.c,$(OBJ_DIR)/%.o,$(SRCS))
 
 # Main target
-fdf: $(LIBFT_DIR)/libft.a $(OBJS)
+NAME = fdf
+
+all: $(NAME)
+
+$(NAME): $(LIBFT_DIR)/libft.a $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ $(MLX_LIB_FLAGS) -L$(LIBFT_DIR) -lft
 
 # Rule to compile object files
@@ -50,6 +54,18 @@ $(OBJ_DIR):
 $(LIBFT_DIR)/libft.a:
 	$(MAKE) -C $(LIBFT_DIR)
 
+# Bonus part
+BONUS_DIR = bonus
+BONUS_SRCS = $(wildcard $(BONUS_DIR)/*.c)
+BONUS_OBJS = $(patsubst $(BONUS_DIR)/%.c,$(OBJ_DIR)/%.o,$(BONUS_SRCS))
+
+bonus: $(BONUS_OBJS)
+	$(CC) $(CFLAGS) $^ -o $(NAME)_bonus $(MLX_LIB_FLAGS) -L$(LIBFT_DIR) -lft
+
+# Rule to compile bonus object files
+$(OBJ_DIR)/%.o: $(BONUS_DIR)/%.c | $(OBJ_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCLUDE_DIR) -I$(MLX_INCLUDE_DIR) -I$(LIBFT_DIR)
+
 # Clean target
 clean:
 	rm -f $(OBJS)
@@ -57,12 +73,15 @@ clean:
 
 # Distclean target
 distclean: clean
-	rm -f fdf
+	rm -f $(NAME)
 
 fclean: clean
-	rm -f fdf
+	rm -f $(NAME)
 	rm -rf $(OBJ_DIR)
 	$(MAKE) -C $(LIBFT_DIR) fclean
 
+# Rebuild target
+re: fclean all
+
 # Phony targets
-.PHONY: clean distclean fclean
+.PHONY: all clean distclean fclean re

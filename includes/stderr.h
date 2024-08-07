@@ -50,4 +50,4 @@
 #define ASIAN_FAILURE_ERROR 8
 
 //filename must end with .fdf
-#define INVALID_FILENAME_ERROR 7
+#define INVALID_FILENAME_ERROR 9

@@ -36,6 +36,7 @@ void	draw_control_menu(t_data *fdf);
 
 void	exit_err(int exit_status);
 void	exit_perr(const char *error_message);
+void	check_filename(const char *filename);
 
 /*======================= FREE.C ======================================*/
 
