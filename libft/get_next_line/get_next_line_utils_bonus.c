@@ -12,15 +12,6 @@
 
 #include "get_next_line_bonus.h"
 
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = -1;
-	while (s[++i])
-		continue ;
-	return (i);
-}
 
 char	*ft_strjoin_special(char const *s1, char const *s2, int bytes_read)
 {

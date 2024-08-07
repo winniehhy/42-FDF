@@ -19,13 +19,13 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include "../libft.h"
 
 char	*get_next_line(int fd);
 int		line_len(char *buffer);
 char	*set_line(char **left_over);
 char	*ft_strjoin_special(char const *s1, char const *s2, int bytes_read);
 char	*ft_strchr_gnl(const char *s, int c);
-size_t	ft_strlen_c(const char *s, char c);
 char	*ft_strdup_gnl(const char *s1);
 void	fill_buffer(int fd, char *buffer, char **left_over);
 #endif

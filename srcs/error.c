@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "fdf.h"
-#include "../libft/libft.h"
+// #include <string.h>
 
 /** @brief Exits the program with a custom errror message based
  * on the exit_status
@@ -44,8 +44,20 @@ void	exit_err(int exit_status)
 		ft_printf("MLX_ERROR: Your minilibx function failed\n");
 	else if (exit_status == SUCCESS)
 		ft_printf("SUCCESS: The program ran successfully\n");
+	else if (exit_status == INVALID_FILENAME_ERROR)
+		ft_printf("INVALID_FILENAME_ERROR: The filename must end with .fdf\n");
 	else
 		ft_printf("That's not a valid map!\n");
 	ft_printf("%s", RESET_ERR_MSG);
 	exit(exit_status);
+}
+
+void	check_filename(const char *filename)
+{
+	const char *extension = ".fdf";
+	size_t len = ft_strlen(filename);
+	size_t ext_len = ft_strlen(extension);
+
+	if (len < ext_len || ft_strcmp(filename + len - ext_len, extension) != 0)
+		exit_err(INVALID_FILENAME_ERROR);
 }

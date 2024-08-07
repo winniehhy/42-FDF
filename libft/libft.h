@@ -53,7 +53,7 @@ void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 char	*get_next_line(int fd);
 int		ft_printf(const char *str, ...);
-int		ft_strcmp(char *s1, char *s2);
+int		ft_strcmp(const char *s1, const char *s2);
 int		ft_abs(int x);
 int		ft_greater(int x, int y);
 int		ft_atoi_base(const char *str, const char *base);
