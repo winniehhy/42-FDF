@@ -54,15 +54,10 @@ void	exit_err(int exit_status)
 
 void	check_filename(const char *filename)
 {
-	const char	*extension;
-	size_t		len;
-	size_t		ext_len;
+	const char *extension = ".fdf";
+	size_t len = ft_strlen(filename);
+	size_t ext_len = ft_strlen(extension);
 
-	*extension = ".fdf";
-	len = ft_strlen(filename);
-	ext_len = ft_strlen(extension);
 	if (len < ext_len || ft_strcmp(filename + len - ext_len, extension) != 0)
-	{
 		exit_err(INVALID_FILENAME_ERROR);
-	}
 }
